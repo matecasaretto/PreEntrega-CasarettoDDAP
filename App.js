@@ -1,12 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import CategoriesScreen from './src/screens/CategoriesScreen'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
+import { useFonts } from 'expo-font'
+import { useState } from 'react';
 
 export default function App() {
+  const [categorySelected, setCategorySelected] = useState('')
+  console.log('Categoria seleccionada :', categorySelected)
+
+  const [fontLoaded] = useFonts({
+    'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
+    'Lato-Black': require('./assets/fonts/Lato-Black.ttf'),
+  })
+
+ if(!fontLoaded) return <ActivityIndicator />
+
+ const onSelectCategory = (category) => {
+  setCategorySelected(category)
+ } 
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    {
+      categorySelected 
+      ? 
+      <ProductsByCategoryScreen category={categorySelected}/>
+      :<CategoriesScreen onSelectCategoryEvent={onSelectCategory}/>
+    }
+    </>
   );
 }
 
