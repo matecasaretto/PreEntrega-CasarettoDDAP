@@ -1,12 +1,14 @@
-import CategoriesScreen from './src/screens/CategoriesScreen'
+//import CategoriesScreen from './src/screens/CategoriesScreen'
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
+//import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen';
 import { useFonts } from 'expo-font'
 import { useState } from 'react';
+//import ProductDetailScreen from './src/screens/ProductDetailScreen';
+import Navigator from './src/navigation/Navigator';
 
 export default function App() {
   const [categorySelected, setCategorySelected] = useState('')
-  console.log('Categoria seleccionada :', categorySelected)
+  const [productIdSelected, setProductIdSelected] = useState(null)
 
   const [fontLoaded] = useFonts({
     'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
@@ -19,15 +21,14 @@ export default function App() {
   setCategorySelected(category)
  } 
 
+ const onSelectProductId = (productId) =>{
+  setProductIdSelected(productId)
+ }
+
   return (
-    <>
-    {
-      categorySelected 
-      ? 
-      <ProductsByCategoryScreen category={categorySelected}/>
-      :<CategoriesScreen onSelectCategoryEvent={onSelectCategory}/>
-    }
-    </>
+   
+    <Navigator/>
+   
   );
 }
 

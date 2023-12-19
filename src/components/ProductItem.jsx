@@ -2,10 +2,10 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'reac
 import React from 'react'
 import {colors} from '../global/colors'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, navigation}) => {
   return (
     <>
-    <TouchableOpacity style={styles.containerProductItem}>
+    <TouchableOpacity onPress={()=>navigation.navigate("Detalle del producto",item.id)} style={styles.containerProductItem}>
         <Text style={styles.ProductTitle}>{item.title}</Text>
         <Image
         style={styles.productImage}
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     margin: 10,
-    backgroundColor: colors.tertiary,
+    backgroundColor: colors.primary,
     alignItems: 'center'
   },
   ProductTitle: {},

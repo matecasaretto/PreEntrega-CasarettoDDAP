@@ -4,14 +4,14 @@ import categories_data from '../data/categories_data.json'
 import CategoryItem from '../components/CategoryItem'
 
 
-const CategoriesScreen = ({onSelectCategoryEvent}) => {
+const CategoriesScreen = ({navigation}) => {
   const renderCategoryItem =({item}) => (
-    <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent}/>
+    <CategoryItem category={item} navigation={navigation}/>
   )
 
   return (
     <>
-    <Header title='Categorias'/>
+    {/* <Header title='Categorias'/> */}
 
     <FlatList
     data={categories_data}
